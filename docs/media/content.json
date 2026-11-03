@@ -1,0 +1,114 @@
+{
+  "repo": "rekordbox-fixes",
+  "accent": "#FF7A90",
+  "hero": {
+    "command": "cdbX64.exe -z hang-034012-1.dmp -c \"~0s; kc 30; q\"",
+    "output": [
+      {
+        "text": "Call Site",
+        "style": "muted"
+      },
+      {
+        "text": "ntdll!NtWaitForSingleObject"
+      },
+      {
+        "text": "KERNELBASE!WaitForSingleObjectEx"
+      },
+      {
+        "text": "wininet!CPendingSyncCall::HandlePendingSync_",
+        "style": "accent"
+      },
+      {
+        "text": "    AppHangIsAppBugForCallingWinInetSyncOnUIThread",
+        "style": "accent"
+      },
+      {
+        "text": "wininet!HttpWrapSendRequest"
+      },
+      {
+        "text": "wininet!HttpEndRequestW"
+      },
+      {
+        "text": "rekordbox",
+        "style": "muted"
+      },
+      {
+        "text": "user32!DispatchClientMessage"
+      },
+      {
+        "text": "user32!__fnINDEVICECHANGE",
+        "style": "accent"
+      }
+    ],
+    "value": "Each USB reconnect blocks rekordbox's UI thread on HTTP."
+  },
+  "diagram": {
+    "direction": "TB",
+    "nodes": [
+      {
+        "id": "flx4",
+        "label": "DDJ-FLX4",
+        "sublabel": "drops off USB"
+      },
+      {
+        "id": "user32",
+        "label": "user32",
+        "sublabel": "__fnINDEVICECHANGE"
+      },
+      {
+        "id": "ui",
+        "label": "rekordbox UI thread",
+        "sublabel": "WM_DEVICECHANGE"
+      },
+      {
+        "id": "wininet",
+        "label": "WinINet",
+        "sublabel": "HttpEndRequestW"
+      },
+      {
+        "id": "server",
+        "label": "rekordbox.com",
+        "sublabel": "5.5 to 6.6 s"
+      },
+      {
+        "id": "hang",
+        "label": "Not Responding",
+        "sublabel": "AppHangB1"
+      }
+    ],
+    "edges": [
+      {
+        "from": "flx4",
+        "to": "user32",
+        "label": "unplug"
+      },
+      {
+        "from": "user32",
+        "to": "ui",
+        "label": "dispatch"
+      },
+      {
+        "from": "ui",
+        "to": "wininet",
+        "label": "sync call"
+      },
+      {
+        "from": "wininet",
+        "to": "server",
+        "label": "HTTPS"
+      },
+      {
+        "from": "wininet",
+        "to": "hang",
+        "label": "wait"
+      }
+    ],
+    "primary": [
+      "flx4",
+      "user32",
+      "ui",
+      "wininet",
+      "server"
+    ]
+  }
+}
