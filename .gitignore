@@ -1,0 +1,8 @@
+*.dmp
+*.bin
+*.map
+*.hash
+rbdump/*.png
+rbscan/*.png
+*.log
+before-*/

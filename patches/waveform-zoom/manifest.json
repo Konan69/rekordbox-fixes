@@ -1,0 +1,102 @@
+{
+ "target_version": "rekordbox 7.2.14 x64",
+ "status": "experimental; visual waveform coverage not confirmed",
+ "limitations": [
+  "Invalidates Authenticode signing; PE checksum remains unchanged.",
+  "Leaf detours have no unwind metadata.",
+  "Normal-mode alternate-index caller and other wide-range views need runtime verification."
+ ],
+ "input_sha256": "f6359b6b3553e5f81e55444b28b7b56aa6f80f7bb7eb88f3c84d865d821ad5a9",
+ "output_sha256": "1d0e4e5622a1c9f3e9e79cc29e0392d3bb06a552437530c03fe0ca424fac47f8",
+ "output_size": 99628464,
+ "stub_symbols": {
+  "_start": "0x1432c7a7c",
+  "decoder_window_seconds": "0x1432c7a7c",
+  "normal_ranges": "0x1432c7a80",
+  "handler_max": "0x1432c7aac",
+  "conv_normal": "0x1432c7afa",
+  "conv_hw114": "0x1432c7b0a",
+  "conv_hw112": "0x1432c7b2b",
+  "grid_filter": "0x1432c7b4c",
+  "stubs_end": "0x1432c7b76",
+  "__bss_start": "0x1432c8000",
+  "_edata": "0x1432c8000",
+  "_end": "0x1432c8000"
+ },
+ "changed_bytes": 239,
+ "changes": [
+  {
+   "name": "normal zoom-out max",
+   "va": "0x142428103",
+   "file_offset": "0x2427503",
+   "length": 5,
+   "original": "b8 07 00 00 00",
+   "patched": "e9 a4 f9 e9 00"
+  },
+  {
+   "name": "converter normal bound 7->11",
+   "va": "0x1423f282d",
+   "file_offset": "0x23f1c2d",
+   "length": 3,
+   "original": "83 fb 07",
+   "patched": "83 fb 0b"
+  },
+  {
+   "name": "converter normal table read",
+   "va": "0x1423f28ad",
+   "file_offset": "0x23f1cad",
+   "length": 7,
+   "original": "8b 84 90 98 6c a7 05",
+   "patched": "e9 48 52 ed 00 cc cc"
+  },
+  {
+   "name": "converter 0x114 table read",
+   "va": "0x1423f28bf",
+   "file_offset": "0x23f1cbf",
+   "length": 7,
+   "original": "8b 84 90 d8 6c a7 05",
+   "patched": "e9 46 52 ed 00 cc cc"
+  },
+  {
+   "name": "converter 0x112 table read",
+   "va": "0x1423f28d1",
+   "file_offset": "0x23f1cd1",
+   "length": 7,
+   "original": "8b 84 90 b8 6c a7 05",
+   "patched": "e9 55 52 ed 00 cc cc"
+  },
+  {
+   "name": "grid normal-branch filter",
+   "va": "0x1418e8c97",
+   "file_offset": "0x18e8097",
+   "length": 9,
+   "original": "45 85 c0 0f 88 2c 05 00 00",
+   "patched": "e9 b0 ee 9d 01 cc cc cc cc"
+  },
+  {
+   "name": "decoder profile window load",
+   "va": "0x1423d3831",
+   "file_offset": "0x23d2c31",
+   "length": 8,
+   "original": "c5 fa 10 05 a7 1c 33 01",
+   "patched": "c5 fa 10 05 43 42 ef 00"
+  },
+  {
+   "name": "stubs in .text raw padding",
+   "va": "0x1432c7a7c",
+   "file_offset": "0x32c6e7c",
+   "length": 250,
+   "original": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+   "patched": "00 00 c8 42 e8 03 00 00 d0 07 00 00 b8 0b 00 00 a0 0f 00 00 40 1f 00 00 80 3e 00 00 c0 5d 00 00 00 7d 00 00 80 bb 00 00 00 fa 00 00 00 77 01 00 4c 8b 15 85 48 99 02 b8 07 00 00 00 4d 85 d2 74 38 45 8b 5a 10 41 81 fb 02 10 00 00 74 09 41 81 fb 04 10 00 00 75 0b 41 80 7a 1c 00 74 04 45 8b 5a 18 41 81 fb 12 01 00 00 74 0e 41 81 fb 14 01 00 00 74 05 b8 0b 00 00 00 e9 0e 06 16 ff 4c 8d 15 7f ff ff ff 41 8b 04 92 e9 aa ad 12 ff 49 89 d2 40 84 f6 75 0c 41 83 fa 07 72 06 41 ba 04 00 00 00 42 8b 84 90 d8 6c a7 05 e9 9b ad 12 ff 49 89 d2 40 84 f6 75 0c 41 83 fa 07 72 06 41 ba 04 00 00 00 42 8b 84 90 b8 6c a7 05 e9 8c ad 12 ff 45 85 c0 0f 88 77 16 62 fe 81 be 04 08 00 00 c0 5d 00 00 7e 10 45 89 e2 66 43 83 7c d5 00 01 0f 85 41 16 62 fe e9 2a 11 62 fe"
+  },
+  {
+   "name": ".text VirtualSize",
+   "va": null,
+   "file_offset": "0x2c8",
+   "length": 4,
+   "original": "7c 6a 2c 03",
+   "patched": "76 6b 2c 03"
+  }
+ ],
+ "target_product_version": "7.2.14.0323"
+}
