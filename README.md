@@ -1,6 +1,6 @@
 # rekordbox-fixes
 
-*A forensic report on why rekordbox froze every time a DJ controller blinked, and the tools that caught it in the act.*
+Why rekordbox freezes when a DDJ-FLX4 reconnects, and what to do about it.
 
 Diagnostics and workarounds for rekordbox 7.2.14 on Windows: the root cause of the freeze when a Pioneer DDJ-FLX4 reconnects, scripts to capture and read that freeze, window-style tools, an analysis-state repair for `master.db`, and an experimental waveform zoom-out patch.
 
